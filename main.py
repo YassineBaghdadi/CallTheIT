@@ -32,7 +32,7 @@ ServerSocket.listen(5)
 def threaded_client(connection):
     while True:
         data = connection.recv(1024)
-        toast.show_toast("Some one needs The IT GUYS : ", data.decode('utf-8'), duration=3600, icon_path="it.ico")
+        toast.show_toast("Some one needs The IT GUYS : ", data.decode('utf-8'), duration=86400, icon_path="it.ico")
         make_noise()
         print(data.decode('utf-8'))
         if not data:
