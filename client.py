@@ -1,14 +1,10 @@
-import socket, os, sys
+import socket, os
 from requests import get
 from win10toast import ToastNotifier
-
 
 ClientSocket = socket.socket()
 hosts = ['10.73.100.101', '10.73.1.115']
 port = 1233
-
-
-
 
 def call(host):
     ip = get('https://api.ipify.org').text
