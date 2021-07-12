@@ -13,7 +13,9 @@ def make_noise():
     winsound.Beep(freq, duration)
 
 
-ServerSocket = socket.socket()
+ServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ServerSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
 host = '0.0.0.0'
 port = 1233
 ThreadCount = 0
@@ -21,6 +23,7 @@ toast = ToastNotifier()
 
 try:
     ServerSocket.bind((host, port))
+    ServerSocket.listen(30)
 except socket.error as e:
     toast.show_toast("ERROR : ", f"{str(e)}", duration=10, icon_path="it.ico")
     print(str(e))
