@@ -1,6 +1,6 @@
 
-import socket
-import os
+import socket, os
+
 from _thread import *
 from win10toast import ToastNotifier
 
@@ -8,8 +8,8 @@ import winsound
 
 
 def make_noise():
-    duration = 1000  # milliseconds
-    freq = 800  # Hz
+    duration = 1000
+    freq = 800
     winsound.Beep(freq, duration)
 
 
