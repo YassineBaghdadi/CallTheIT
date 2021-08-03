@@ -7,8 +7,8 @@ import sys
 from requests import get
 from win10toast import ToastNotifier
 from PyQt5 import QtWidgets, uic
-
-hosts = ['10.73.100.101', '10.73.1.115', '10.73.2.68']
+with open('ips.txt', 'r') as f:
+    hosts = f.readlines()
 port = 1233
 
 
@@ -16,18 +16,16 @@ class Main(QtWidgets.QWidget):
     def __init__(self):
         super(Main, self).__init__()
         uic.loadUi("c.ui", self)
-        self.yassine, self.anass, self.karzazi = None, None, None
-        for i, v in enumerate(hosts):
-            if i == 0:
-                self.yassine = subprocess.call(['ping', '-n' if platform.system().lower()=='windows' else '-c', '1', v]) == 0
-            elif i == 1:
-                self.anass = subprocess.call(['ping', '-n' if platform.system().lower()=='windows' else '-c', '1', v]) == 0
-            elif i == 2:
-                self.karzazi = subprocess.call(['ping', '-n' if platform.system().lower()=='windows' else '-c', '1', v]) == 0
+        ips = []
 
-        self.YB.setEnabled(self.yassine)
-        self.AK.setEnabled(self.anass)
-        self.MK.setEnabled(self.karzazi)
+        for i, v in enumerate(hosts):
+            v = v.replace('\n', '')
+            ips.append(subprocess.call(['ping', '-n' if platform.system().lower()=='windows' else '-c', '1', v]) == 0)
+
+
+        self.YB.setEnabled(ips[0])
+        self.AK.setEnabled(ips[1])
+        self.MK.setEnabled(ips[2])
 
         self.YB.clicked.connect(lambda : self.call(hosts[0], 'Yassine Baghdadi'))
         self.AK.clicked.connect(lambda : self.call(hosts[1], 'Anass Kada '))
