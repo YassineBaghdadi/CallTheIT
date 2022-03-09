@@ -17,7 +17,7 @@
    <item>
     <widget class="QLineEdit" name="txt">
      <property name="maxLength">
-      <number>50</number>
+      <number>999999999</number>
      </property>
      <property name="frame">
       <bool>true</bool>
