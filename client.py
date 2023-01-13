@@ -10,7 +10,7 @@ with open('ips.txt', 'r') as f:
     hosts = [i.replace('\n', '') for i in f.readlines()]
 port = 1233
 
-print(hosts)
+
 
 def con():
     return pymysql.connect(host=hosts[0], user='test', password='test', database="CallTheIT", port=3306)
@@ -73,12 +73,10 @@ class Main(QtWidgets.QWidget):
 
 
         self.YB.setEnabled(ips[0])
-        self.AK.setEnabled(ips[1])
-        self.MK.setEnabled(ips[2])
+
 
         self.YB.clicked.connect(lambda : self.call(hosts[0], 'Yassine Baghdadi'))
-        self.AK.clicked.connect(lambda : self.call(hosts[1], 'Anass Kada '))
-        self.MK.clicked.connect(lambda : self.call(hosts[2], 'Mohammed Karzazi'))
+
 
 
 
@@ -129,4 +127,3 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     main = Main()
     sys.exit(app.exec_())
-
